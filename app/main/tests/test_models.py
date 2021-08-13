@@ -23,3 +23,13 @@ class ModelTests(TestCase):
         user = get_user_model().objects.create_user(email, 'password123')
 
         self.assertEqual(user.email, email.lower())
+
+    def test_user_invalid_email(self):
+        """Test creating user with no email returns an error"""
+        with self.assertRaises(ValueError):
+            get_user_model().objects.create_user(None, 'password123')
+    
+    def test_user_invalid_password(self):
+        """Test creating user with no password returns an error"""
+        with self.assertRaises(ValueError):
+            get_user_model().objects.create_user('hatim@django.com', None)
