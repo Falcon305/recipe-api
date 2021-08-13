@@ -33,3 +33,13 @@ class ModelTests(TestCase):
         """Test creating user with no password returns an error"""
         with self.assertRaises(ValueError):
             get_user_model().objects.create_user('hatim@django.com', None)
+
+    def test_create_superuser(self):
+        """Test creating superuser"""
+        user = get_user_model().objects.create_superuser(
+            'hatim@django.com',
+            'password123'
+        )
+
+        self.assertTrue(user.is_superuser)
+        self.assertTrue(user.is_admin)
