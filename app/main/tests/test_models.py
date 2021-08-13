@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.contrib.auth import get_user_model
 
+
 class ModelTests(TestCase):
 
     def test_create_user_with_pass(self):
@@ -28,7 +29,7 @@ class ModelTests(TestCase):
         """Test creating user with no email returns an error"""
         with self.assertRaises(ValueError):
             get_user_model().objects.create_user(None, 'password123')
-    
+
     def test_user_invalid_password(self):
         """Test creating user with no password returns an error"""
         with self.assertRaises(ValueError):
